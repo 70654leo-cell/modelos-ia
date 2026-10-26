@@ -1,6 +1,8 @@
 from src.modelos.modelo_google import ModeloGoogle
 from src.modelos.modelo_groq import ModeloGroq
 from src.modelos.modelo_local import ModeloLocal
+from src.modelos.prompt_01 import Prompt01
+from src.modelos.prompt_02 import Prompt_02
 
 import os
 from rich.console import Console
@@ -25,6 +27,9 @@ class MenuPrincipal:
         print("1. Modelo Google API KEY")
         print("2. Modelo Groq API KEY")
         print("3. Modelo Local (Ollama)")
+        print("4. Modelo OpenBMB")
+        print("5. Prompt básico")
+        print("6. Prompt avanzado")
         print("0. Salir")
 
     def ejecutar_opcion(self):
@@ -52,6 +57,26 @@ class MenuPrincipal:
                 prompt = input("Ingrese su prompt: ")
                 respuesta = modelo_local.generar_respuesta(prompt)
                 print("Respuesta del modelo Local:")
+                self.console.print(Markdown(respuesta))  # Mostrar la respuesta en formato Markdown
+
+            elif self.opcion == "4":
+                from src.modelos.modelo_openbmb import ModeloOpenbmb
+                modelo_openbmb = ModeloOpenbmb()
+                prompt = input("Ingrese su prompt: ")
+                respuesta = modelo_openbmb.generar_respuesta(prompt)
+                print("Respuesta del modelo OpenBMB:")
+                self.console.print(Markdown(respuesta))  # Mostrar la respuesta en formato Markdown
+
+            elif self.opcion == "5":
+                prompt_01 = Prompt01()
+                respuesta = prompt_01.generar_respuestas()
+                print("Respuesta del Prompt básico:")
+                self.console.print(Markdown(respuesta))  # Mostrar la respuesta en formato Markdown
+
+            elif self.opcion == "6":
+                prompt_02 = Prompt_02()
+                respuesta = prompt_02.generar_respuestas()
+                print("Respuesta del Prompt avanzado:")
                 self.console.print(Markdown(respuesta))  # Mostrar la respuesta en formato Markdown
 
             elif self.opcion == "0":

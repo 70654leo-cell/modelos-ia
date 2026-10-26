@@ -1,0 +1,13 @@
+from langchain_ollama import ChatOllama
+from langchain_core.prompts import PromptTemplate
+
+modelo = ChatOllama(
+    model="qwen2.5:3b",
+    temperature=0
+)
+
+plantilla = PromptTemplate.from_template(
+    "Explica el concepto de {tema} "
+    "para un estudiante de nivel {nivel}. "
+    "Incluye un ejemplo sencillo."
+)
