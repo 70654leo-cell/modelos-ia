@@ -23,11 +23,15 @@ Instrucciones:
             ),
             (
                 "user",
-                "Explica qué es un bucle for en Python."
+                "Explica el concepto de {tema} para un estudiante de nivel {nivel}."
             )
         ])
 
-        prompt = prompt_template.format_messages()
-        respuesta = self.modelo.invoke(prompt)
+        prompt = prompt_template.format_messages(
+            tema="funciones",
+            nivel="principiante"
+        )
         
+        print("Prompt generado:", prompt)
+        respuesta = self.modelo.invoke(prompt)
         return respuesta.content
